@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>language</groupId>
-  <artifactId>language</artifactId>
+  <artifactId>language-parent</artifactId>
   <version>1.0</version>
   <modules>
     <module>domain</module>
