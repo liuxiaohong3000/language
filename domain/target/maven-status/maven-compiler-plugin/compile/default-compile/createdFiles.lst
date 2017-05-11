@@ -1,0 +1,8 @@
+com\language\domain\DUserWord.class
+com\language\domain\DUser.class
+com\language\domain\BForgettingCurve.class
+com\language\domain\BWordTab.class
+com\language\domain\DMessage.class
+com\language\domain\BType.class
+com\language\domain\BWord.class
+com\language\domain\DUserForgettingCurve.class

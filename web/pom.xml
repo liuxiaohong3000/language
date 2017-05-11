@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dao</artifactId>
+    <artifactId>web</artifactId>
     <packaging>jar</packaging>
 
-    <name>dao</name>
+    <name>web</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.language</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>service</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
