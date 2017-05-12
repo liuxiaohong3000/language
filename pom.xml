@@ -13,10 +13,8 @@
   <artifactId>language-parent</artifactId>
   <version>1.0</version>
   <modules>
-    <module>domain</module>
-    <module>dao</module>
-    <module>service</module>
-    <module>web</module>
+    <module>user</module>
+    <module>word</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -61,6 +59,11 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.28</version>
     </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.0.11</version>
+    </dependency>
     <!--Swagger support-->
     <dependency>
       <groupId>com.mangofactory</groupId>
@@ -80,18 +83,31 @@
     </dependency>
     <!--Mysql / DataSource-->
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jdbc</artifactId>
-      <version>9.0.0.M20</version>
-    </dependency>
-    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>6.0.6</version>
+    </dependency>
+    <!--通用Mapper-->
+    <dependency>
+      <groupId>tk.mybatis</groupId>
+      <artifactId>mapper</artifactId>
+      <version>3.3.6</version>
+    </dependency>
+    <!--分页插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>4.1.1</version>
     </dependency>
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -111,6 +127,21 @@
       <url>https://repo.spring.io/libs-release</url>
     </repository>
   </repositories>
+  <resources>
+    <resource>
+      <directory>src/main/resources</directory>
+      <includes>
+        <include>**/*.properties</include>
+        <include>**/*.xml</include>
+        <include>**/*.yml</include>
+      </includes>
+      <!-- 是否替换资源中的属性 -->
+      <filtering>false</filtering>
+    </resource>
+    <resource>
+      <directory>src/main/resources/${profiles.app.active}</directory>
+    </resource>
+  </resources>
   <pluginRepositories>
     <pluginRepository>
       <id>spring-milestone</id>

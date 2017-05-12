@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must point Dao interface -->
+<mapper namespace="com.language.word.dao.DMessageMapper">
+	<!-- d_message query field-->
+	<sql id="columns">
+      id,
+      name,
+      type,
+      status,
+      summary,
+      content,
+      send_user,
+      receive_user,
+      send_time,
+      receive_time,
+      note,
+      create_time,
+      timestamp
+	</sql>
+	
+	<!-- d_message result map-->
+  <resultMap type="DMessage" id="DMessageMap">
+		<id column="id" property="id"/>
+    	<result column="name" property="name"/>
+    	<result column="type" property="type"/>
+    	<result column="status" property="status"/>
+    	<result column="summary" property="summary"/>
+    	<result column="content" property="content"/>
+    	<result column="send_user" property="sendUser"/>
+    	<result column="receive_user" property="receiveUser"/>
+    	<result column="send_time" property="sendTime"/>
+    	<result column="receive_time" property="receiveTime"/>
+    	<result column="note" property="note"/>
+    	<result column="create_time" property="createTime"/>
+    	<result column="timestamp" property="timestamp"/>
+  </resultMap>
+  
+  <!-- save d_message -->
+  <insert id="save" parameterType="DMessage" >
+		insert into d_message (
+		<include refid="columns"/>)
+			values (
+					#{id},
+						#{name},
+						#{type},
+						#{status},
+						#{summary},
+						#{content},
+						#{sendUser},
+						#{receiveUser},
+						#{sendTime},
+						#{receiveTime},
+						#{note},
+						Now(),
+						Now()
+				)
+	</insert>
+	
+	<!-- update d_message -->
+	<update id="update" parameterType="DMessage">
+	    UPDATE d_message 
+	    <set>
+				<if test="name != null">name = #{name}, </if>
+					<if test="type != null">type = #{type}, </if>
+					<if test="status != null">status = #{status}, </if>
+					<if test="summary != null">summary = #{summary}, </if>
+					<if test="content != null">content = #{content}, </if>
+					<if test="sendUser != null">send_user = #{sendUser}, </if>
+					<if test="receiveUser != null">receive_user = #{receiveUser}, </if>
+					<if test="sendTime != null">send_time = #{sendTime}, </if>
+					<if test="receiveTime != null">receive_time = #{receiveTime}, </if>
+					<if test="note != null">note = #{note}, </if>
+				    </set>
+	    WHERE id = #{id}
+  </update>
+  
+  <!-- 分页查询 -->
+	<select id="searchByPage" parameterType="map" resultMap="DMessageMap">
+		SELECT <include refid="columns" /> FROM d_message
+			<where>
+				    <if test="id != null"> and id = #{id} </if>
+						<if test="name != null"> and name = #{name} </if>
+						<if test="type != null"> and type = #{type} </if>
+						<if test="status != null"> and status = #{status} </if>
+						<if test="summary != null"> and summary = #{summary} </if>
+						<if test="content != null"> and content = #{content} </if>
+						<if test="sendUser != null"> and send_user = #{sendUser} </if>
+						<if test="receiveUser != null"> and receive_user = #{receiveUser} </if>
+						<if test="sendTime != null"> and send_time = #{sendTime} </if>
+						<if test="receiveTime != null"> and receive_time = #{receiveTime} </if>
+						<if test="note != null"> and note = #{note} </if>
+						<if test="createTime != null"> and create_time = #{createTime} </if>
+						<if test="timestamp != null"> and timestamp = #{timestamp} </if>
+				</where>
+	</select>
+  
+  <!-- query d_message by primary key -->
+  <select id="findById"  resultMap="DMessageMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM d_message where id=#{id}
+	</select>
+	
+	<!-- delete d_message by primary key -->
+  <delete id="deleteById"  parameterType="Long">
+		delete FROM d_message where id=#{id}
+  </delete>
+</mapper> 

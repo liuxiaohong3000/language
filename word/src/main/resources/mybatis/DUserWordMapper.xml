@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must point Dao interface -->
+<mapper namespace="com.language.word.dao.DUserWordMapper">
+	<!-- d_user_word query field-->
+	<sql id="columns">
+      ID,
+      user_id,
+      word_id,
+      word_type,
+      memory_time,
+      recall_time,
+      user_forgetting_curve_id,
+      note,
+      create_time,
+      update_time
+	</sql>
+	
+	<!-- d_user_word result map-->
+  <resultMap type="DUserWord" id="DUserWordMap">
+		<id column="ID" property="id"/>
+    	<result column="user_id" property="userId"/>
+    	<result column="word_id" property="wordId"/>
+    	<result column="word_type" property="wordType"/>
+    	<result column="memory_time" property="memoryTime"/>
+    	<result column="recall_time" property="recallTime"/>
+    	<result column="user_forgetting_curve_id" property="userForgettingCurveId"/>
+    	<result column="note" property="note"/>
+    	<result column="create_time" property="createTime"/>
+    	<result column="update_time" property="updateTime"/>
+  </resultMap>
+  
+  <!-- save d_user_word -->
+  <insert id="save" parameterType="DUserWord" >
+		insert into d_user_word (
+		<include refid="columns"/>)
+			values (
+					#{id},
+						#{userId},
+						#{wordId},
+						#{wordType},
+						#{memoryTime},
+						#{recallTime},
+						#{userForgettingCurveId},
+						#{note},
+						Now(),
+						#{updateTime}
+				)
+	</insert>
+	
+	<!-- update d_user_word -->
+	<update id="update" parameterType="DUserWord">
+	    UPDATE d_user_word 
+	    <set>
+				<if test="userId != null">user_id = #{userId}, </if>
+					<if test="wordId != null">word_id = #{wordId}, </if>
+					<if test="wordType != null">word_type = #{wordType}, </if>
+					<if test="memoryTime != null">memory_time = #{memoryTime}, </if>
+					<if test="recallTime != null">recall_time = #{recallTime}, </if>
+					<if test="userForgettingCurveId != null">user_forgetting_curve_id = #{userForgettingCurveId}, </if>
+					<if test="note != null">note = #{note}, </if>
+						<if test="updateTime != null">update_time = #{updateTime}, </if>
+		    </set>
+	    WHERE ID = #{id}
+  </update>
+  
+  <!-- 分页查询 -->
+	<select id="searchByPage" parameterType="map" resultMap="DUserWordMap">
+		SELECT <include refid="columns" /> FROM d_user_word
+			<where>
+				    <if test="id != null"> and ID = #{id} </if>
+						<if test="userId != null"> and user_id = #{userId} </if>
+						<if test="wordId != null"> and word_id = #{wordId} </if>
+						<if test="wordType != null"> and word_type = #{wordType} </if>
+						<if test="memoryTime != null"> and memory_time = #{memoryTime} </if>
+						<if test="recallTime != null"> and recall_time = #{recallTime} </if>
+						<if test="userForgettingCurveId != null"> and user_forgetting_curve_id = #{userForgettingCurveId} </if>
+						<if test="note != null"> and note = #{note} </if>
+						<if test="createTime != null"> and create_time = #{createTime} </if>
+						<if test="updateTime != null"> and update_time = #{updateTime} </if>
+				</where>
+	</select>
+  
+  <!-- query d_user_word by primary key -->
+  <select id="findById"  resultMap="DUserWordMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM d_user_word where ID=#{id}
+	</select>
+	
+	<!-- delete d_user_word by primary key -->
+  <delete id="deleteById"  parameterType="Long">
+		delete FROM d_user_word where ID=#{id}
+  </delete>
+</mapper> 

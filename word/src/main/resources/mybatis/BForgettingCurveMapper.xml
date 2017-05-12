@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must point Dao interface -->
+<mapper namespace="com.language.word.dao.BForgettingCurveMapper">
+	<!-- b_forgetting_curve query field-->
+	<sql id="columns">
+      ID,
+      name,
+      interval_time,
+      interval_type,
+      note,
+      create_time
+	</sql>
+	
+	<!-- b_forgetting_curve result map-->
+  <resultMap type="BForgettingCurve" id="BForgettingCurveMap">
+		<id column="ID" property="id"/>
+    	<result column="name" property="name"/>
+    	<result column="interval_time" property="intervalTime"/>
+    	<result column="interval_type" property="intervalType"/>
+    	<result column="note" property="note"/>
+    	<result column="create_time" property="createTime"/>
+  </resultMap>
+  
+  <!-- save b_forgetting_curve -->
+  <insert id="save" parameterType="BForgettingCurve" >
+		insert into b_forgetting_curve (
+		<include refid="columns"/>)
+			values (
+					#{id},
+						#{name},
+						#{intervalTime},
+						#{intervalType},
+						#{note},
+						Now()
+				)
+	</insert>
+	
+	<!-- update b_forgetting_curve -->
+	<update id="update" parameterType="BForgettingCurve">
+	    UPDATE b_forgetting_curve 
+	    <set>
+				<if test="name != null">name = #{name}, </if>
+					<if test="intervalTime != null">interval_time = #{intervalTime}, </if>
+					<if test="intervalType != null">interval_type = #{intervalType}, </if>
+					<if test="note != null">note = #{note}, </if>
+			    </set>
+	    WHERE ID = #{id}
+  </update>
+  
+  <!-- 分页查询 -->
+	<select id="searchByPage" parameterType="map" resultMap="BForgettingCurveMap">
+		SELECT <include refid="columns" /> FROM b_forgetting_curve
+			<where>
+				    <if test="id != null"> and ID = #{id} </if>
+						<if test="name != null"> and name = #{name} </if>
+						<if test="intervalTime != null"> and interval_time = #{intervalTime} </if>
+						<if test="intervalType != null"> and interval_type = #{intervalType} </if>
+						<if test="note != null"> and note = #{note} </if>
+						<if test="createTime != null"> and create_time = #{createTime} </if>
+				</where>
+	</select>
+  
+  <!-- query b_forgetting_curve by primary key -->
+  <select id="findById"  resultMap="BForgettingCurveMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM b_forgetting_curve where ID=#{id}
+	</select>
+	
+	<!-- delete b_forgetting_curve by primary key -->
+  <delete id="deleteById"  parameterType="Long">
+		delete FROM b_forgetting_curve where ID=#{id}
+  </delete>
+</mapper> 

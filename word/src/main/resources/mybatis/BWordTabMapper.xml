@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must point Dao interface -->
+<mapper namespace="com.language.word.dao.BWordTabMapper">
+	<!-- b_word_tab query field-->
+	<sql id="columns">
+      id,
+      synonym,
+      shorthand,
+      phrases,
+      word_classes,
+      other_info,
+      word_id,
+      note,
+      create_time
+	</sql>
+	
+	<!-- b_word_tab result map-->
+  <resultMap type="BWordTab" id="BWordTabMap">
+		<id column="id" property="id"/>
+    	<result column="synonym" property="synonym"/>
+    	<result column="shorthand" property="shorthand"/>
+    	<result column="phrases" property="phrases"/>
+    	<result column="word_classes" property="wordClasses"/>
+    	<result column="other_info" property="otherInfo"/>
+    	<result column="word_id" property="wordId"/>
+    	<result column="note" property="note"/>
+    	<result column="create_time" property="createTime"/>
+  </resultMap>
+  
+  <!-- save b_word_tab -->
+  <insert id="save" parameterType="BWordTab" >
+		insert into b_word_tab (
+		<include refid="columns"/>)
+			values (
+					#{id},
+						#{synonym},
+						#{shorthand},
+						#{phrases},
+						#{wordClasses},
+						#{otherInfo},
+						#{wordId},
+						#{note},
+						Now()
+				)
+	</insert>
+	
+	<!-- update b_word_tab -->
+	<update id="update" parameterType="BWordTab">
+	    UPDATE b_word_tab 
+	    <set>
+				<if test="synonym != null">synonym = #{synonym}, </if>
+					<if test="shorthand != null">shorthand = #{shorthand}, </if>
+					<if test="phrases != null">phrases = #{phrases}, </if>
+					<if test="wordClasses != null">word_classes = #{wordClasses}, </if>
+					<if test="otherInfo != null">other_info = #{otherInfo}, </if>
+					<if test="wordId != null">word_id = #{wordId}, </if>
+					<if test="note != null">note = #{note}, </if>
+			    </set>
+	    WHERE id = #{id}
+  </update>
+  
+  <!-- 分页查询 -->
+	<select id="searchByPage" parameterType="map" resultMap="BWordTabMap">
+		SELECT <include refid="columns" /> FROM b_word_tab
+			<where>
+				    <if test="id != null"> and id = #{id} </if>
+						<if test="synonym != null"> and synonym = #{synonym} </if>
+						<if test="shorthand != null"> and shorthand = #{shorthand} </if>
+						<if test="phrases != null"> and phrases = #{phrases} </if>
+						<if test="wordClasses != null"> and word_classes = #{wordClasses} </if>
+						<if test="otherInfo != null"> and other_info = #{otherInfo} </if>
+						<if test="wordId != null"> and word_id = #{wordId} </if>
+						<if test="note != null"> and note = #{note} </if>
+						<if test="createTime != null"> and create_time = #{createTime} </if>
+				</where>
+	</select>
+  
+  <!-- query b_word_tab by primary key -->
+  <select id="findById"  resultMap="BWordTabMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM b_word_tab where id=#{id}
+	</select>
+	
+	<!-- delete b_word_tab by primary key -->
+  <delete id="deleteById"  parameterType="Long">
+		delete FROM b_word_tab where id=#{id}
+  </delete>
+</mapper> 
