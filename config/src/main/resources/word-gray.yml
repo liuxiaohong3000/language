@@ -2,9 +2,8 @@ logging:
     level:
         com.language.word: DEBUG
 
-local:
-    server:
-        port: 8080
+server:
+    port: 8080
 
 spring:
     application:

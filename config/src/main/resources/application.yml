@@ -10,3 +10,5 @@ spring:
         name: language-config
     profiles:
         active: native
+
+#http://localhost:8070/word/gray
