@@ -15,6 +15,7 @@
   <modules>
     <module>user</module>
     <module>word</module>
+      <module>config</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -32,120 +33,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <!--Spring Boot-->
-    <!--支持 Web 应用开发，包含 Tomcat 和 spring-mvc。 -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <!--模板引擎-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <!--支持使用 JDBC 访问数据库-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
-    </dependency>
-    <!--添加适用于生产环境的功能，如性能指标和监测等功能。 -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <!--Json Support-->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>1.2.28</version>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
-      <version>1.0.11</version>
-    </dependency>
-    <!--Swagger support-->
-    <dependency>
-      <groupId>com.mangofactory</groupId>
-      <artifactId>swagger-springmvc</artifactId>
-      <version>0.9.5</version>
-    </dependency>
-    <!--Mybatis-->
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-      <version>1.2.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>3.2.8</version>
-    </dependency>
-    <!--Mysql / DataSource-->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-    </dependency>
-    <!--通用Mapper-->
-    <dependency>
-      <groupId>tk.mybatis</groupId>
-      <artifactId>mapper</artifactId>
-      <version>3.3.6</version>
-    </dependency>
-    <!--分页插件-->
-    <dependency>
-      <groupId>com.github.pagehelper</groupId>
-      <artifactId>pagehelper</artifactId>
-      <version>4.1.1</version>
-    </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-  <repositories>
-    <repository>
-      <id>spring-milestone</id>
-      <url>https://repo.spring.io/libs-release</url>
-    </repository>
-  </repositories>
-  <resources>
-    <resource>
-      <directory>src/main/resources</directory>
-      <includes>
-        <include>**/*.properties</include>
-        <include>**/*.xml</include>
-        <include>**/*.yml</include>
-      </includes>
-      <!-- 是否替换资源中的属性 -->
-      <filtering>false</filtering>
-    </resource>
-    <resource>
-      <directory>src/main/resources/${profiles.app.active}</directory>
-    </resource>
-  </resources>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>spring-milestone</id>
-      <url>https://repo.spring.io/libs-release</url>
-    </pluginRepository>
-  </pluginRepositories>
+
 </project>

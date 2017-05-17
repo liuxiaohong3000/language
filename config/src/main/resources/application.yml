@@ -1,0 +1,12 @@
+logging:
+    level:
+        com.language.word: DEBUG
+
+server:
+    port: 8070
+
+spring:
+    application:
+        name: language-config
+    profiles:
+        active: native
