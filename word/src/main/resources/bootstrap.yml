@@ -1,0 +1,8 @@
+#系统级的配置
+spring:
+    cloud:
+        config:
+              name: word
+              uri: http://localhost:8070
+              profile: ${spring.profiles.active}
+              enabled: true

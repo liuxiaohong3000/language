@@ -29,6 +29,8 @@ import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,12 +51,14 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class MyBatisConfig implements TransactionManagementConfigurer {
+    private static final Logger log = LoggerFactory.getLogger(MyBatisConfig.class);
 
     @Autowired
     DataSource dataSource;
 
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean() {
+    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage("com.language.word.model");
@@ -89,7 +93,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 
     @Bean
     @Override
-    public PlatformTransactionManager annotationDrivenTransactionManager() {
+    public PlatformTransactionManager annotationDrivenTransactionManager(){
         return new DataSourceTransactionManager(dataSource);
     }
 }
