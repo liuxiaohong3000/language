@@ -19,10 +19,10 @@ public class WordController {
     @Autowired
     private BusWordService busWordService;
 
-    @ApiOperation(value="Get all types",notes="requires noting")
+    @ApiOperation(value="Get all words",notes="requires noting")
     @RequestMapping(method= RequestMethod.GET)
-    public Results types(){
+    public Results words(){
 
-        return busWordService.listType();
+        return busWordService.listWord();
     }
 }

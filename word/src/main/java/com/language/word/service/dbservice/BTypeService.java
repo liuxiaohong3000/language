@@ -75,7 +75,7 @@ public class BTypeService {
 	 * @return Results
 	 */
 	public List<BType> searchByPage(Map<String,Object> searchParams, Integer pageNumber, Integer pageSize) {
-		PageHelper.startPage(1, 2);
+		PageHelper.startPage(pageNumber, pageSize);
 		return bTypeDao.searchByPage(searchParams);
 	}
 

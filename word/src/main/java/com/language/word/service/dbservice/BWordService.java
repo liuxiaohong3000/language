@@ -1,5 +1,6 @@
 package com.language.word.service.dbservice;
 
+import com.github.pagehelper.PageHelper;
 import com.language.word.dao.BWordMapper;
 import com.language.word.model.BWord;
 import org.slf4j.Logger;
@@ -74,8 +75,8 @@ public class BWordService {
 	 * @return Results
 	 */
 	public List<BWord> searchByPage(Map<String,Object> searchParams, Integer pageNumber, Integer pageSize) {
-		
-		return null;
+		PageHelper.startPage(pageNumber, pageSize);
+		return bWordDao.searchByPage(searchParams);
 	}
 
 }
