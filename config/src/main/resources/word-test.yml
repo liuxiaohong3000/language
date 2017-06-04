@@ -12,3 +12,12 @@ spring:
         acquireRetryDelay: 1000
         acquireRetryAttempts: 60
         minPoolSizebreakAfterAcquireFailure: false
+
+
+gt:
+  source:
+      appId: YV2YjDZ7me8UcddAs4N8v9
+      appKey: YHfxULdlFw66H8hfRnJSW6
+      masterSecret: G04OLabOjl6thG5HVD3sF2
+      url: http://sdk.open.api.igexin.com/apiex.htm
+

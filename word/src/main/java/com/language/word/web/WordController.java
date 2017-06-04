@@ -20,7 +20,7 @@ public class WordController {
     private BusWordService busWordService;
 
     @ApiOperation(value="Get all words",notes="requires noting")
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(value="words", method= RequestMethod.GET)
     public Results words(){
 
         return busWordService.listWord();
