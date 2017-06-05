@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must point Dao interface -->
+<mapper namespace="com.language.word.dao.DUserClientMapper">
+	<!-- message_user_client query field-->
+	<sql id="columns">
+      id,
+      mobile,
+      client_id,
+      status,
+      create_time
+	</sql>
+	
+	<!-- message_user_client result map-->
+  <resultMap type="DUserClient" id="DUserClientMap">
+		<id column="id" property="id"/>
+    	<result column="mobile" property="mobile"/>
+    	<result column="client_id" property="clientId"/>
+    	<result column="status" property="status"/>
+    	<result column="create_time" property="createTime"/>
+  </resultMap>
+  
+  <!-- save message_user_client -->
+  <insert id="save" parameterType="DUserClient" >
+		insert into d_user_client (
+		<include refid="columns"/>)
+			values (
+					#{id},
+					#{mobile},
+					#{clientId},
+					#{status},
+					Now()
+				)
+	</insert>
+	
+	<!-- update message_user_client -->
+	<update id="update" parameterType="DUserClient">
+	    UPDATE d_user_client
+	    <set>
+				<if test="mobile != null">mobile = #{mobile}, </if>
+				<if test="clientId != null">client_id = #{clientId}, </if>
+				<if test="status != null">status = #{status}, </if>
+				</set>
+	    WHERE id = #{id}
+  </update>
+  
+  <!-- 分页查询 -->
+	<select id="searchByPage" parameterType="map" resultMap="DUserClientMap">
+		SELECT <include refid="columns" /> FROM d_user_client
+			<where>
+				<if test="id != null"> and id = #{id} </if>
+				<if test="mobile != null"> and mobile = #{mobile} </if>
+				<if test="clientId != null"> and client_id = #{clientId} </if>
+				<if test="status != null"> and status = #{status} </if>
+			</where>
+	</select>
+  <select id="listUserClient" parameterType="map" resultMap="DUserClientMap">
+		SELECT <include refid="columns" /> FROM d_user_client
+			<where>
+				<if test="id != null"> and id = #{id} </if>
+				<if test="mobile != null"> and mobile = #{mobile} </if>
+				<if test="clientId != null"> and client_id = #{clientId} </if>
+				<if test="status != null"> and status = #{status} </if>
+			</where>
+	</select>
+  <!-- query message_user_client by primary key -->
+  <select id="findById"  resultMap="DUserClientMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM d_user_client where id=#{id}
+	</select>
+	
+	<!-- delete message_user_client by primary key -->
+  <delete id="deleteById"  parameterType="Long">
+		delete FROM d_user_client where id=#{id}
+  </delete>
+  
+  	<!-- delete message_user_client by primary key -->
+  <delete id="deleteByMobileAndClientId"  parameterType="map">
+		delete FROM d_user_client
+		  <where>
+			  <if test="mobile != null"> and mobile = #{mobile} </if>
+			  <if test="clientId != null"> and client_id = #{clientId} </if>
+			  <if test="status != null"> and status = #{status} </if>
+		  </where>
+  </delete>
+</mapper> 

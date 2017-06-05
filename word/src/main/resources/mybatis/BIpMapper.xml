@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must point Dao interface -->
+<mapper namespace="com.language.word.dao.BIpMapper">
+	<!-- message_user_client query field-->
+	<sql id="columns">
+      id,
+      ip,
+      status,
+      create_time
+	</sql>
+	
+	<!-- message_user_client result map-->
+  <resultMap type="BIp" id="BIpMap">
+		<id column="id" property="id"/>
+    	<result column="ip" property="ip"/>
+    	<result column="status" property="status"/>
+    	<result column="create_time" property="createTime"/>
+  </resultMap>
+  
+  <!-- save message_user_client -->
+  <insert id="save" parameterType="BIp" >
+		insert into b_ip (
+		<include refid="columns"/>)
+			values (
+					#{id},
+					#{ip},
+					#{status},
+					Now()
+				)
+	</insert>
+	
+	<!-- update message_user_client -->
+	<update id="update" parameterType="BIp">
+	    UPDATE b_ip
+	    <set>
+				<if test="ip != null">ip = #{ip}, </if>
+				<if test="status != null">status = #{status}, </if>
+				</set>
+	    WHERE id = #{id}
+  </update>
+  
+  <!-- 分页查询 -->
+	<select id="searchByPage" parameterType="map" resultMap="BIpMap">
+		SELECT <include refid="columns" /> FROM b_ip
+			<where>
+				<if test="id != null"> and id = #{id} </if>
+				<if test="ip != null"> and ip = #{ip} </if>
+				<if test="status != null"> and status = #{status} </if>
+			</where>
+	</select>
+  <!-- query message_user_client by primary key -->
+  <select id="findById"  resultMap="BIpMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM b_ip where id=#{id}
+	</select>
+	
+	<!-- delete message_user_client by primary key -->
+  <delete id="deleteById"  parameterType="Long">
+		delete FROM b_ip where id=#{id}
+  </delete>
+</mapper> 
