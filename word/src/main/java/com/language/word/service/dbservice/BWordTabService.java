@@ -66,6 +66,18 @@ public class BWordTabService {
 		return bWordTab;
 	}
 
+	/**
+	 * 查询关键词标签
+	 * @param id
+	 * @return Results
+	 */
+	public BWordTab findByWordId(Long id){
+
+		BWordTab bWordTab = bWordTabDao.findById(id);
+
+		return bWordTab;
+	}
+
 	
 	/**
 	 * 按条件分页查询记录

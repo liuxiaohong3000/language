@@ -81,6 +81,11 @@
   <select id="findById"  resultMap="BWordTabMap" parameterType="Long">
 		SELECT <include refid="columns"/>  FROM b_word_tab where id=#{id}
 	</select>
+
+	<!-- query b_word_tab by primary key -->
+	<select id="findByWordId"  resultMap="BWordTabMap" parameterType="Long">
+		SELECT <include refid="columns"/>  FROM b_word_tab where word_id=#{wordId}
+	</select>
 	
 	<!-- delete b_word_tab by primary key -->
   <delete id="deleteById"  parameterType="Long">

@@ -16,16 +16,23 @@ public interface BWordTabMapper {
 	
 	/**
 	 * update b_word_tab
-	 * @param BWordTab
+	 * @param bWordTab
 	 * @return 
 	 */
 	 public void update(BWordTab bWordTab);
   	/**
 	 * query b_word_tab by primary key 
-	 * @param Long id
+	 * @param id
 	 * @return BWordTab
 	 */
 	 public BWordTab findById(Long id);
+
+	/**
+	 * query b_word_tab by wordId
+	 * @param id
+	 * @return BWordTab
+	 */
+	public BWordTab findByWordId(Long id);
 	 
 	/**
 	 * 按条件分页查询记录
@@ -36,7 +43,7 @@ public interface BWordTabMapper {
 	 
 	 /**
 	 * delete b_word_tab by primary key 
-	 * @param BWordTab
+	 * @param id
 	 * @return 
 	 */
 	 public void deleteById(Long id);

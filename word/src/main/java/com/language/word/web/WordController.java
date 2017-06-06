@@ -4,6 +4,7 @@ import com.language.word.common.result.Results;
 import com.language.word.service.busservice.BusWordService;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +25,12 @@ public class WordController {
     public Results words(int pageNum){
 
         return busWordService.listWord(pageNum);
+    }
+
+    @ApiOperation(value="Get all words",notes="requires noting")
+    @RequestMapping(value="words/{id}", method= RequestMethod.GET)
+    public Results get(@PathVariable Long id){
+
+        return busWordService.getWord(id);
     }
 }
