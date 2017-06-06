@@ -21,8 +21,8 @@ public class WordController {
 
     @ApiOperation(value="Get all words",notes="requires noting")
     @RequestMapping(value="words", method= RequestMethod.GET)
-    public Results words(){
+    public Results words(int pageNum){
 
-        return busWordService.listWord();
+        return busWordService.listWord(pageNum);
     }
 }

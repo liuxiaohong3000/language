@@ -1,5 +1,6 @@
 package com.language.word.service.busservice;
 
+import com.language.word.common.constant.GlobalConstant;
 import com.language.word.common.constant.ReturnStatusConstant;
 import com.language.word.common.result.Results;
 import com.language.word.model.BType;
@@ -43,9 +44,9 @@ public class BusWordService {
 	 * 关键字列表
 	 * @return
 	 */
-	public Results listWord(){
+	public Results listWord(int pageNum){
 
-		List<BWord> types= dbWordService.searchByPage(null,1,10);
+		List<BWord> types= dbWordService.searchByPage(null,pageNum, GlobalConstant.PAGESIZE);
 
 		Results results = new Results(
 				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
