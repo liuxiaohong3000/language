@@ -53,7 +53,8 @@
 	<select id="searchByPage" parameterType="map" resultMap="BForgettingCurveMap">
 		SELECT <include refid="columns" /> FROM b_forgetting_curve
 			<where>
-				    <if test="id != null"> and ID = #{id} </if>
+				    	<if test="id != null"> and ID = #{id} </if>
+						<if test="ltId != null"> and ID > #{ltId} </if>
 						<if test="name != null"> and name = #{name} </if>
 						<if test="intervalTime != null"> and interval_time = #{intervalTime} </if>
 						<if test="intervalType != null"> and interval_type = #{intervalType} </if>

@@ -1,5 +1,6 @@
 package com.language.word.service.dbservice;
 
+import com.github.pagehelper.PageHelper;
 import com.language.word.dao.BForgettingCurveMapper;
 import com.language.word.model.BForgettingCurve;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,43 +20,6 @@ public class BForgettingCurveService {
 	@Autowired
 	private BForgettingCurveMapper bForgettingCurveDao;
 
-	
-	/**
-	 * 增加遗忘曲线
-	 * @param bForgettingCurve
-	 * @return Results
-	 */
-	public void add(BForgettingCurve bForgettingCurve){
-		
-		bForgettingCurveDao.save(bForgettingCurve);
-
-	}
-
-	
-	/**
-	 * 删除遗忘曲线
-	 * @param id
-	 * @return Results
-	 */
-	public void deleteById(Long id){
-
-		bForgettingCurveDao.deleteById(id);
-
-	}
-
-	
-	/**
-	 * 修改遗忘曲线
-	 * @param bForgettingCurve
-	 * @return Results
-	 */
-	public void modify(BForgettingCurve bForgettingCurve){
-
-		bForgettingCurveDao.update(bForgettingCurve);
-
-	}
-
-	
 	/**
 	 * 查询遗忘曲线
 	 * @param id
@@ -66,16 +31,30 @@ public class BForgettingCurveService {
 
 		return bForgettingCurve;
 	}
+	/**
+	 * 查询遗忘曲线
+	 * @param id
+	 * @return Results
+	 */
+	public BForgettingCurve findNextById(Long id){
+		PageHelper.startPage(1, 1);
+		Map<String , Object> params=new HashMap<String, Object>();
+		params.put("ltId",id);
+		List<BForgettingCurve> curves=bForgettingCurveDao.searchByPage(params);
+		if(curves!=null && curves.size()>0){
+			return curves.get(0);
+		}
 
+		return null;
+	}
 	
 	/**
 	 * 按条件分页查询记录
-	 * @param searchParams 条件
 	 * @return Results
 	 */
-	public List<BForgettingCurve> searchByPage(Map<String,Object> searchParams, Integer pageNumber, Integer pageSize) {
+	public List<BForgettingCurve> searchByPage() {
 
-		return null;
+		return bForgettingCurveDao.searchByPage(null);
 	}
 
 }

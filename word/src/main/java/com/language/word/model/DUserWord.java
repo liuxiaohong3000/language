@@ -27,6 +27,10 @@ public class DUserWord extends Base implements Serializable{
 	*  关键词类型
 	*/
 	private Integer wordType;
+	/**
+	 *  关键词名称
+	 */
+	private String wordName;
 
 	/**
 	*  记忆时间
@@ -138,6 +142,14 @@ public class DUserWord extends Base implements Serializable{
 		return updateTime;
 	}
 
+	public String getWordName() {
+		return wordName;
+	}
+
+	public void setWordName(String wordName) {
+		this.wordName = wordName;
+	}
+
 	@Override
 	public String toString() {
 		return "DUserWord{" +
@@ -145,6 +157,7 @@ public class DUserWord extends Base implements Serializable{
 				", userId=" + userId +
 				", wordId=" + wordId +
 				", wordType=" + wordType +
+				", wordName='" + wordName + '\'' +
 				", memoryTime=" + memoryTime +
 				", recallTime=" + recallTime +
 				", userForgettingCurveId=" + userForgettingCurveId +

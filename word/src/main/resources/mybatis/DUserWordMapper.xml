@@ -9,6 +9,7 @@
       user_id,
       word_id,
       word_type,
+	  word_name,
       memory_time,
       recall_time,
       user_forgetting_curve_id,
@@ -23,7 +24,8 @@
     	<result column="user_id" property="userId"/>
     	<result column="word_id" property="wordId"/>
     	<result column="word_type" property="wordType"/>
-    	<result column="memory_time" property="memoryTime"/>
+	    <result column="word_name" property="wordName"/>
+	    <result column="memory_time" property="memoryTime"/>
     	<result column="recall_time" property="recallTime"/>
     	<result column="user_forgetting_curve_id" property="userForgettingCurveId"/>
     	<result column="note" property="note"/>
@@ -40,6 +42,7 @@
 						#{userId},
 						#{wordId},
 						#{wordType},
+	  					#{wordName},
 						#{memoryTime},
 						#{recallTime},
 						#{userForgettingCurveId},
@@ -56,11 +59,12 @@
 				<if test="userId != null">user_id = #{userId}, </if>
 					<if test="wordId != null">word_id = #{wordId}, </if>
 					<if test="wordType != null">word_type = #{wordType}, </if>
+					<if test="wordName != null">word_name = #{wordName}, </if>
 					<if test="memoryTime != null">memory_time = #{memoryTime}, </if>
 					<if test="recallTime != null">recall_time = #{recallTime}, </if>
 					<if test="userForgettingCurveId != null">user_forgetting_curve_id = #{userForgettingCurveId}, </if>
 					<if test="note != null">note = #{note}, </if>
-						<if test="updateTime != null">update_time = #{updateTime}, </if>
+			        <if test="updateTime != null">update_time = #{updateTime}, </if>
 		    </set>
 	    WHERE ID = #{id}
   </update>
@@ -73,8 +77,10 @@
 						<if test="userId != null"> and user_id = #{userId} </if>
 						<if test="wordId != null"> and word_id = #{wordId} </if>
 						<if test="wordType != null"> and word_type = #{wordType} </if>
+						<if test="wordName != null"> and word_name = #{wordName} </if>
 						<if test="memoryTime != null"> and memory_time = #{memoryTime} </if>
 						<if test="recallTime != null"> and recall_time = #{recallTime} </if>
+						<if test="allowRecallTime != null"> and recall_time &lt; #{allowRecallTime} </if>
 						<if test="userForgettingCurveId != null"> and user_forgetting_curve_id = #{userForgettingCurveId} </if>
 						<if test="note != null"> and note = #{note} </if>
 						<if test="createTime != null"> and create_time = #{createTime} </if>

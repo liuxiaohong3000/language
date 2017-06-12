@@ -1,5 +1,6 @@
 package com.language.word.service.dbservice;
 
+import com.github.pagehelper.PageHelper;
 import com.language.word.dao.DUserWordMapper;
 import com.language.word.model.DUserWord;
 import org.slf4j.Logger;
@@ -75,7 +76,7 @@ public class DUserWordService {
 	 */
 	public List<DUserWord> searchByPage(Map<String,Object> searchParams, Integer pageNumber, Integer pageSize) {
 
-		return null;
+		PageHelper.startPage(pageNumber, pageSize);
+		return dUserWordDao.searchByPage(searchParams);
 	}
-
 }
