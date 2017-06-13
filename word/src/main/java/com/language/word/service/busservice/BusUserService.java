@@ -68,13 +68,13 @@ public class BusUserService {
 	 * 修改用户关键词复习时间
 	 * @return
 	 */
-	public Results modifyUserWord(Long userWordId){
+	public Results modifyUserWord(Long userWordId,Long forgetId){
 
 		//查询用户关键词
 		DUserWord duw=dbUserWordService.findById(userWordId);
 
 		//获取下一个遗忘曲线
-		BForgettingCurve forgetCurve=dbForgettingCurveService.findNextById(duw.getUserForgettingCurveId());
+		BForgettingCurve forgetCurve=dbForgettingCurveService.findById(forgetId);
 		if(forgetCurve!=null){
 			duw.setUserForgettingCurveId(forgetCurve.getId());
 			duw.setRecallTime(IntervalUtil.getIntervalTime(forgetCurve.getIntervalType(),forgetCurve.getIntervalTime()));
@@ -106,4 +106,20 @@ public class BusUserService {
 		return results; 
 	}
 
+	/**
+	 * 获取允许回忆的列表
+	 * @return
+	 */
+	public Results findByUserIdAndWordId(Long userId, Long wordId){
+		Map<String , Object> params=new HashMap<String, Object>();
+		params.put("userId",userId);
+		params.put("wordId",wordId);
+		DUserWord userWord= dbUserWordService.findByUserIdAndWordId(params);
+
+		Results results = new Results(
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc(),userWord);
+
+		return results;
+	}
 }

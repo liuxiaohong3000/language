@@ -79,4 +79,16 @@ public class DUserWordService {
 		PageHelper.startPage(pageNumber, pageSize);
 		return dUserWordDao.searchByPage(searchParams);
 	}
+
+	/**
+	 * 查询用户关键词
+	 * @param searchParams
+	 * @return Results
+	 */
+	public DUserWord findByUserIdAndWordId(Map<String,Object> searchParams){
+
+		DUserWord dUserWord = dUserWordDao.findByUserIdAndWordId(searchParams);
+
+		return dUserWord;
+	}
 }

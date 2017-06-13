@@ -21,11 +21,17 @@ public class BusUserServiceTest {
     }
     @Test
     public void modifyUserWord() {
-        busUserService.modifyUserWord(1L);
+        busUserService.modifyUserWord(1L,1L);
     }
     @Test
     public void listAllowRecallWord() {
         Results results=busUserService.listAllowRecallWord(1L,1L,1);
+        System.out.println(JSON.toJSONString(results));
+    }
+
+    @Test
+    public void findByUserIdAndWordId() {
+        Results results=busUserService.findByUserIdAndWordId(1L,1L);
         System.out.println(JSON.toJSONString(results));
     }
 }

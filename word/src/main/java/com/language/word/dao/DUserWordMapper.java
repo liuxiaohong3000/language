@@ -40,5 +40,10 @@ public interface DUserWordMapper {
 	 * @return 
 	 */
 	 public void deleteById(Long id);
-	 
+	/**
+	 * query d_user_word by primary key
+	 * @param Long ID
+	 * @return DUserWord
+	 */
+	public DUserWord findByUserIdAndWordId(Map<String, Object> searchParams);
 }

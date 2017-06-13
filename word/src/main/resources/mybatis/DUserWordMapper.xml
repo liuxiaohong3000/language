@@ -92,7 +92,12 @@
   <select id="findById"  resultMap="DUserWordMap" parameterType="Long">
 		SELECT <include refid="columns"/>  FROM d_user_word where ID=#{id}
 	</select>
-	
+
+	<!-- query d_user_word by primary key -->
+	<select id="findByUserIdAndWordId"  resultMap="DUserWordMap" parameterType="map" >
+		SELECT <include refid="columns"/>  FROM d_user_word where user_id = #{userId} and word_id=#{wordId}
+	</select>
+
 	<!-- delete d_user_word by primary key -->
   <delete id="deleteById"  parameterType="Long">
 		delete FROM d_user_word where ID=#{id}

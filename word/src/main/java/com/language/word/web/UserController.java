@@ -34,8 +34,15 @@ public class UserController {
 
     @ApiOperation(value="Put word to userWords",notes="requires noting")
     @RequestMapping(value="modifyWord", method= RequestMethod.POST)
-    public Results modifyWord(Long userWordId){
+    public Results modifyWord(Long userWordId,Long forgetId){
 
-        return busUserService.modifyUserWord(userWordId);
+        return busUserService.modifyUserWord(userWordId,forgetId);
+    }
+
+    @ApiOperation(value="Get all user userWords",notes="requires noting")
+    @RequestMapping(value="word", method= RequestMethod.GET)
+    public Results userWord(Long userId, Long wordId){
+
+        return busUserService.findByUserIdAndWordId(userId,wordId);
     }
 }
