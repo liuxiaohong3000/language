@@ -73,7 +73,7 @@ public class BWordTabService {
 	 */
 	public BWordTab findByWordId(Long id){
 
-		BWordTab bWordTab = bWordTabDao.findById(id);
+		BWordTab bWordTab = bWordTabDao.findByWordId(id);
 
 		return bWordTab;
 	}
