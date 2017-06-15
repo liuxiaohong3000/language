@@ -33,4 +33,11 @@ public class WordController {
 
         return busWordService.getWord(id);
     }
+
+    @ApiOperation(value="Put word to words",notes="requires noting")
+    @RequestMapping(value="addWord", method= RequestMethod.POST)
+    public Results addWord(String name, String translate, Integer typeId, String synonym, String wordClasses, String shorthand, String phrases, String otherInfo){
+
+        return busWordService.addWord(name,translate,typeId,synonym,wordClasses,shorthand,phrases,otherInfo);
+    }
 }

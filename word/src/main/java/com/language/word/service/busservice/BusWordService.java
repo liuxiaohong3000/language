@@ -3,7 +3,6 @@ package com.language.word.service.busservice;
 import com.language.word.common.constant.GlobalConstant;
 import com.language.word.common.constant.ReturnStatusConstant;
 import com.language.word.common.result.Results;
-import com.language.word.model.BType;
 import com.language.word.model.BWord;
 import com.language.word.model.BWordTab;
 import com.language.word.model.vo.WordVO;
@@ -31,20 +30,32 @@ public class BusWordService {
 	@Autowired
 	private BWordTabService dbWordTabService;
 
-
 	/**
-	 * 类型列表
+	 * 新增关键词
 	 * @return
 	 */
-	public Results listType(){
+	public Results addWord(String name, String translate, Integer typeId, String synonym, String wordClasses, String shorthand, String phrases, String otherInfo){
 
-		List<BType> types= dbTypeService.searchByPage(null,1,10);
-		
+		BWord word=new BWord();
+		word.setName(name);
+		word.setTranslate(translate);
+		word.setTypeId(typeId);
+		dbWordService.add(word);
+
+		BWordTab wtab=new BWordTab();
+		wtab.setSynonym(synonym);
+		wtab.setWordClasses(wordClasses);
+		wtab.setShorthand(shorthand);
+		wtab.setPhrases(phrases);
+		wtab.setOtherInfo(otherInfo);
+		wtab.setWordId(word.getId());
+		dbWordTabService.add(wtab);
+
 		Results results = new Results(
 				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
-				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc(),types);
-		
-		return results; 
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc());
+
+		return results;
 	}
 	/**
 	 * 关键字列表

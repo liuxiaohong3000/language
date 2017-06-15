@@ -24,7 +24,7 @@
   </resultMap>
   
   <!-- save b_word -->
-  <insert id="save" parameterType="BWord" >
+  <insert id="save" parameterType="BWord"  useGeneratedKeys="true" keyProperty="id">
 		insert into b_word (
 		<include refid="columns"/>)
 			values (
