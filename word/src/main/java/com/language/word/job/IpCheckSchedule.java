@@ -5,15 +5,13 @@ import com.language.word.model.BIp;
 import com.language.word.service.busservice.BusClientService;
 import com.language.word.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by Administrator on 2017/6/5.
  */
-@Component
-@EnableScheduling // 启用定时任务
+//@Component
+//@EnableScheduling // 启用定时任务
 public class IpCheckSchedule {
 
 

@@ -25,10 +25,12 @@
 package com.language.word.common.config;
 
 import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,8 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
+        //DefaultVFS在获取jar上存在问题，使用springboot只能修改
+        VFS.addImplClass(SpringBootVFS.class);
         bean.setTypeAliasesPackage("com.language.word.model");
 
         //分页插件

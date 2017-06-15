@@ -8,8 +8,10 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>word</artifactId>
+    <properties>
+        <start-class>com.language.word.Application</start-class>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -63,26 +65,22 @@
         </dependency>
         <!--Mybatis-->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>1.2.2</version>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.2.0</version>
         </dependency>
+        <!--通用Mapper-->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.2.8</version>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
         </dependency>
         <!--Mysql / DataSource-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--通用Mapper-->
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper</artifactId>
-            <version>3.3.6</version>
-        </dependency>
+
         <!--分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -147,34 +145,13 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
-    <repositories>
-        <repository>
-            <id>spring-milestone</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </repository>
-    </repositories>
-    <resources>
-        <resource>
-            <directory>src/main/resources</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.xml</include>
-                <include>**/*.yml</include>
-            </includes>
-            <!-- 是否替换资源中的属性 -->
-            <filtering>false</filtering>
-        </resource>
-        <resource>
-            <directory>src/main/resources/${profiles.app.active}</directory>
-        </resource>
-    </resources>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestone</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
     <profiles>
         <profile>
             <id>dev</id>

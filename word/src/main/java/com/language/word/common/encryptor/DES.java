@@ -138,16 +138,4 @@ public class DES {
 		return byteFina;
 	}
 
-	public static void main(String[] args) throws Exception {
-		DES des = new DES("12345678");
-
-		String str = "中文abc12";
-		String enStr = des.encryptStr(str);
-		String deStr = des.decryptStr(enStr);
-
-		System.out.println("加密前: " + str);
-		System.out.println("加密后: " + enStr);
-		System.out.println("解密后: " + deStr);
-	}
-
 }

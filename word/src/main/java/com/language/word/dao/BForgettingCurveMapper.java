@@ -9,20 +9,20 @@ public interface BForgettingCurveMapper {
 
   	/**
 	 * save b_forgetting_curve
-	 * @param BForgettingCurve
+	 * @param bForgettingCurve
 	 * @return 
 	 */
 	 public void save(BForgettingCurve bForgettingCurve);
 	
 	/**
 	 * update b_forgetting_curve
-	 * @param BForgettingCurve
+	 * @param bForgettingCurve
 	 * @return 
 	 */
 	 public void update(BForgettingCurve bForgettingCurve);
   	/**
 	 * query b_forgetting_curve by primary key 
-	 * @param Long ID
+	 * @param id
 	 * @return BForgettingCurve
 	 */
 	 public BForgettingCurve findById(Long id);
@@ -36,7 +36,7 @@ public interface BForgettingCurveMapper {
 	 
 	 /**
 	 * delete b_forgetting_curve by primary key 
-	 * @param Long id
+	 * @param id
 	 * @return 
 	 */
 	 public void deleteById(Long id);

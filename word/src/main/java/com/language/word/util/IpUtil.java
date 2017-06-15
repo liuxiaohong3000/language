@@ -31,9 +31,9 @@ public class IpUtil {
 
                 System.out.println(netInterface.getName()+"====Name");
 
-                if(!"wlan0".equals(netInterface.getName())){
-                    continue;
-                }
+//                if(!"wlan0".equals(netInterface.getName())){
+//                    continue;
+//                }
                 Enumeration addresses = netInterface.getInetAddresses();
 
                 while (addresses.hasMoreElements())     {
@@ -74,7 +74,4 @@ public class IpUtil {
 
     }
 
-    public static void main(String a[]){
-        getLocalHostAddr();
-    }
 }
