@@ -1,6 +1,9 @@
 package com.language.word.model;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class BType extends Base implements Serializable{
 
@@ -37,6 +40,8 @@ public class BType extends Base implements Serializable{
 	*  创建时间
 	*/
 	private Date createTime;
+
+	private List<BType> types;
 	
 	public void setId(Long id){
 		this.id = id;
@@ -85,6 +90,14 @@ public class BType extends Base implements Serializable{
 		return createTime;
 	}
 
+	public List<BType> getTypes() {
+		return types;
+	}
+
+	public void setTypes(List<BType> types) {
+		this.types = types;
+	}
+
 	@Override
 	public String toString() {
 		return "BType{" +
@@ -94,5 +107,12 @@ public class BType extends Base implements Serializable{
 				", note='" + note + '\'' +
 				", createTime=" + createTime +
 				'}';
+	}
+
+	public void addSubTypeToList(BType subType){
+		if(types==null){
+			types=new ArrayList<BType>();
+		}
+		types.add(subType);
 	}
 }

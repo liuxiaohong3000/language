@@ -22,4 +22,10 @@ public class BusWordServiceTest {
         System.out.println(JSON.toJSONString(results));
     }
 
+    @Test
+    public void listTypes() {
+        Results results=busWordService.listTypes();
+        System.out.println(JSON.toJSONString(results));
+    }
+
 }

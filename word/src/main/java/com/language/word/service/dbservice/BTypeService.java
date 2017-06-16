@@ -1,6 +1,5 @@
 package com.language.word.service.dbservice;
 
-import com.github.pagehelper.PageHelper;
 import com.language.word.dao.BTypeMapper;
 import com.language.word.model.BType;
 import org.slf4j.Logger;
@@ -71,12 +70,10 @@ public class BTypeService {
 	
 	/**
 	 * 按条件分页查询记录
-	 * @param searchParams 条件
 	 * @return Results
 	 */
-	public List<BType> searchByPage(Map<String,Object> searchParams, Integer pageNumber, Integer pageSize) {
-		PageHelper.startPage(pageNumber, pageSize);
-		return bTypeDao.searchByPage(searchParams);
+	public List<BType> searchByPage() {
+		return bTypeDao.searchByPage();
 	}
 
 }

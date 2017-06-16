@@ -31,7 +31,7 @@ public interface BTypeMapper {
 	 * @param searchParams 条件
 	 * @return
 	 */
-	 List<BType> searchByPage(Map<String, Object> searchParams);
+	 List<BType> searchByPage();
 	 
 	 /**
 	 * delete b_type by primary key 

@@ -20,6 +20,13 @@ public class WordController {
     @Autowired
     private BusWordService busWordService;
 
+    @ApiOperation(value="Get all types",notes="requires noting")
+    @RequestMapping(value="types", method= RequestMethod.GET)
+    public Results types(int pageNum){
+
+        return busWordService.listTypes();
+    }
+
     @ApiOperation(value="Get all words",notes="requires noting")
     @RequestMapping(value="words", method= RequestMethod.GET)
     public Results words(int pageNum){

@@ -3,6 +3,7 @@ package com.language.word.service.busservice;
 import com.language.word.common.constant.GlobalConstant;
 import com.language.word.common.constant.ReturnStatusConstant;
 import com.language.word.common.result.Results;
+import com.language.word.model.BType;
 import com.language.word.model.BWord;
 import com.language.word.model.BWordTab;
 import com.language.word.model.vo.WordVO;
@@ -14,7 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("busWordService")
 public class BusWordService {
@@ -29,6 +33,37 @@ public class BusWordService {
 
 	@Autowired
 	private BWordTabService dbWordTabService;
+
+	/**
+	 * 关键字类型列表
+	 * @return
+	 */
+	public Results listTypes(){
+		List<BType> returnTypes=new ArrayList<BType>();
+		Map<Long,BType> topTypeMap=new HashMap<Long,BType>();
+		List<BType> dbTypes= dbTypeService.searchByPage();
+		for(BType type : dbTypes){
+			if(type.getParentId() == 0L){
+				topTypeMap.put(type.getId(),type);
+				returnTypes.add(type);
+			}
+		}
+
+		for(BType type : dbTypes){
+			if(type.getParentId() != 0L){
+				if(topTypeMap.containsKey(type.getParentId())){
+					BType topType=topTypeMap.get(type.getParentId());
+					topType.addSubTypeToList(type);
+				}
+			}
+		}
+
+		Results results = new Results(
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc(),returnTypes);
+
+		return results;
+	}
 
 	/**
 	 * 新增关键词
