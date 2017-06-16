@@ -39,6 +39,15 @@ public class BusUserService {
 	 */
 	public Results addUserWord(Long userId,Long forgetId,Long wordId){
 
+		Map<String , Object> params=new HashMap<String, Object>();
+		params.put("userId",userId);
+		params.put("wordId",wordId);
+		DUserWord userWord= dbUserWordService.findByUserIdAndWordId(params);
+		//判断是否已经存在，如果存在直接更新
+		if(userWord!=null){
+			return modifyUserWord(userWord.getId(),forgetId);
+		}
+
 		//获取关键词
 		Results wordResults=busWordService.getWord(wordId);
 		WordVO vo=(WordVO)wordResults.getData();
