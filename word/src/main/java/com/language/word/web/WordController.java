@@ -22,16 +22,16 @@ public class WordController {
 
     @ApiOperation(value="Get all types",notes="requires noting")
     @RequestMapping(value="types", method= RequestMethod.GET)
-    public Results types(int pageNum){
+    public Results types(){
 
         return busWordService.listTypes();
     }
 
     @ApiOperation(value="Get all words",notes="requires noting")
     @RequestMapping(value="words", method= RequestMethod.GET)
-    public Results words(int pageNum){
+    public Results words(Long typeId,int pageNum){
 
-        return busWordService.listWord(pageNum);
+        return busWordService.listWord(typeId,pageNum);
     }
 
     @ApiOperation(value="Get all words",notes="requires noting")

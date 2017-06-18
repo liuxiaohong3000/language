@@ -15,7 +15,11 @@ public class BusWordServiceTest {
 
     @Autowired
     private BusWordService busWordService;
-
+    @Test
+    public void listWord() {
+        Results results=busWordService.listWord(9L,2);
+        System.out.println(JSON.toJSONString(results));
+    }
     @Test
     public void addWord() {
         Results results=busWordService.addWord("1","1",1,"1","1","1","1","1");

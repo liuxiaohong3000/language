@@ -95,9 +95,10 @@ public class BusWordService {
 	 * 关键字列表
 	 * @return
 	 */
-	public Results listWord(int pageNum){
-
-		List<BWord> types= dbWordService.searchByPage(null,pageNum, GlobalConstant.PAGESIZE);
+	public Results listWord(Long typeId,int pageNum){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("typeId",typeId);
+		List<BWord> types= dbWordService.searchByPage(params,pageNum, GlobalConstant.PAGESIZE);
 
 		Results results = new Results(
 				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
