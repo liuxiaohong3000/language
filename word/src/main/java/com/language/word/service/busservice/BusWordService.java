@@ -40,24 +40,23 @@ public class BusWordService {
 	 */
 	public Results listTypes(){
 		List<BType> returnTypes=new ArrayList<BType>();
-		Map<Long,BType> topTypeMap=new HashMap<Long,BType>();
+		Map<Long,BType> typeMap=new HashMap<Long,BType>();
 		List<BType> dbTypes= dbTypeService.searchByPage();
 		for(BType type : dbTypes){
+			typeMap.put(type.getId(),type);
 			if(type.getParentId() == 0L){
-				topTypeMap.put(type.getId(),type);
 				returnTypes.add(type);
 			}
 		}
 
 		for(BType type : dbTypes){
-			if(type.getParentId() != 0L){
-				if(topTypeMap.containsKey(type.getParentId())){
-					BType topType=topTypeMap.get(type.getParentId());
-					topType.addSubTypeToList(type);
+			if(type.getParentId() != 0L){//获取上一级
+				if(typeMap.containsKey(type.getParentId())){
+					BType parentType=typeMap.get(type.getParentId());
+					parentType.addSubTypeToList(type);
 				}
 			}
 		}
-
 		Results results = new Results(
 				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
 				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc(),returnTypes);
