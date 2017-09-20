@@ -4,9 +4,11 @@ import com.language.word.common.constant.GlobalConstant;
 import com.language.word.common.constant.ReturnStatusConstant;
 import com.language.word.common.result.Results;
 import com.language.word.model.BForgettingCurve;
+import com.language.word.model.BWord;
 import com.language.word.model.DUserWord;
 import com.language.word.model.vo.WordVO;
 import com.language.word.service.dbservice.BForgettingCurveService;
+import com.language.word.service.dbservice.BWordService;
 import com.language.word.service.dbservice.DUserWordService;
 import com.language.word.util.IntervalUtil;
 import org.slf4j.Logger;
@@ -29,6 +31,9 @@ public class BusUserService {
 
 	@Autowired
 	private DUserWordService dbUserWordService;
+
+	@Autowired
+	private BWordService dbWordService;
 
 	@Autowired
 	private BusWordService busWordService;
@@ -106,11 +111,19 @@ public class BusUserService {
 		params.put("userId",userId);
 		params.put("wordType",wordType);
 		params.put("allowRecallTime",new Date());
-		List<DUserWord> types= dbUserWordService.searchByPage(params,pageNum, GlobalConstant.PAGESIZE);
-
+		List<DUserWord> userWords= dbUserWordService.searchByPage(params,pageNum, GlobalConstant.PAGESIZE);
+		if(userWords!=null){
+			for(DUserWord uw : userWords){
+				BWord bWord=dbWordService.findById(uw.getWordId());
+				if(bWord!=null){
+					uw.setTranslate(bWord.getTranslate());
+					uw.setPronunciation(bWord.getPronunciation());
+				}
+			}
+		}
 		Results results = new Results(
 				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
-				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc(),types);
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc(),userWords);
 		
 		return results; 
 	}

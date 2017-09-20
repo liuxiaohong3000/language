@@ -48,6 +48,15 @@ public class DUserWord extends Base implements Serializable{
 	private Long userForgettingCurveId;
 
 	/**
+	 *  翻译
+	 */
+	private String translate;
+
+	/**
+	 * 音标
+	 */
+	private String pronunciation;
+	/**
 	*  备注
 	*/
 	private String note;
@@ -148,6 +157,22 @@ public class DUserWord extends Base implements Serializable{
 
 	public void setWordName(String wordName) {
 		this.wordName = wordName;
+	}
+
+	public String getTranslate() {
+		return translate;
+	}
+
+	public void setTranslate(String translate) {
+		this.translate = translate;
+	}
+
+	public String getPronunciation() {
+		return pronunciation;
+	}
+
+	public void setPronunciation(String pronunciation) {
+		this.pronunciation = pronunciation;
 	}
 
 	@Override
