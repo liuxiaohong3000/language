@@ -24,6 +24,11 @@ public class BWord extends Base implements Serializable{
 	private String translate;
 
 	/**
+	 * 音标
+	 */
+	private String pronunciation;
+
+	/**
 	*  类型ID
 	*/
 	private Integer typeId;
@@ -85,12 +90,21 @@ public class BWord extends Base implements Serializable{
 		return createTime;
 	}
 
+	public String getPronunciation() {
+		return pronunciation;
+	}
+
+	public void setPronunciation(String pronunciation) {
+		this.pronunciation = pronunciation;
+	}
+
 	@Override
 	public String toString() {
 		return "BWord{" +
 				"id=" + id +
 				", name='" + name + '\'' +
 				", translate='" + translate + '\'' +
+				", pronunciation='" + pronunciation + '\'' +
 				", typeId=" + typeId +
 				", note='" + note + '\'' +
 				", createTime=" + createTime +

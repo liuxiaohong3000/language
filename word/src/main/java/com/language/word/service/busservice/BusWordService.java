@@ -68,11 +68,12 @@ public class BusWordService {
 	 * 新增关键词
 	 * @return
 	 */
-	public Results addWord(String name, String translate, Integer typeId, String synonym, String wordClasses, String shorthand, String phrases, String otherInfo){
+	public Results addWord(String name, String translate, String pronunciation,Integer typeId, String synonym, String wordClasses, String shorthand, String phrases, String otherInfo){
 
 		BWord word=new BWord();
 		word.setName(name);
 		word.setTranslate(translate);
+		word.setPronunciation(pronunciation);
 		word.setTypeId(typeId);
 		dbWordService.add(word);
 
