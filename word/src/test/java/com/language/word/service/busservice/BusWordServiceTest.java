@@ -22,7 +22,7 @@ public class BusWordServiceTest {
     }
     @Test
     public void addWord() {
-        Results results=busWordService.addWord("1","1",1,"1","1","1","1","1");
+        Results results=busWordService.addWord("1","1","1",1,"1","1","1","1","1");
         System.out.println(JSON.toJSONString(results));
     }
 
