@@ -45,4 +45,11 @@ public class UserController {
 
         return busUserService.findByUserIdAndWordId(userId,wordId);
     }
+
+    @ApiOperation(value="del word from userWords",notes="requires noting")
+    @RequestMapping(value="deleteExpireWord", method= RequestMethod.POST)
+    public Results deleteExpireWord(Long userId){
+
+        return busUserService.deleteExpireWord(userId);
+    }
 }

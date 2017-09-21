@@ -41,6 +41,10 @@ public interface DUserWordMapper {
 	 */
 	 public void deleteById(Long id);
 	/**
+	 * delete d_user_word by recall_time
+	 */
+	 public void deleteExpireWord(Long userId);
+	/**
 	 * query d_user_word by primary key
 	 * @param Long ID
 	 * @return DUserWord

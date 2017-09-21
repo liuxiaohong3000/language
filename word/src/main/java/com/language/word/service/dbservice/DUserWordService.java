@@ -42,6 +42,14 @@ public class DUserWordService {
 		dUserWordDao.deleteById(id);
 
 	}
+	/**
+	 * 删除用户关键词
+	 */
+	public void deleteExpireWord(Long userId){
+
+		dUserWordDao.deleteExpireWord(userId);
+
+	}
 
 	
 	/**

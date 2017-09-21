@@ -127,7 +127,18 @@ public class BusUserService {
 		
 		return results; 
 	}
+	/**
+	 * 删除过期的回忆列表
+	 * @return
+	 */
+	public Results deleteExpireWord(Long userId){
+		dbUserWordService.deleteExpireWord(userId);
+		Results results = new Results(
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc());
 
+		return results;
+	}
 	/**
 	 * 获取允许回忆的列表
 	 * @return

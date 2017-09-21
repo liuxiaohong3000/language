@@ -102,4 +102,7 @@
   <delete id="deleteById"  parameterType="Long">
 		delete FROM d_user_word where ID=#{id}
   </delete>
+	<delete id="deleteExpireWord" parameterType="Long">
+		delete from d_user_word where user_id = #{userId} and recall_time <![CDATA[ < Now()]]>
+	</delete>
 </mapper> 
