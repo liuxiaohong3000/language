@@ -93,6 +93,26 @@ public class BusWordService {
 		return results;
 	}
 	/**
+	 * 新增关键词
+	 * @return
+	 */
+	public Results modifyWord(Long id, String synonym, String wordClasses, String shorthand, String phrases, String otherInfo){
+
+		BWordTab wtab=dbWordTabService.findById(id);
+		wtab.setSynonym(synonym);
+		wtab.setWordClasses(wordClasses);
+		wtab.setShorthand(shorthand);
+		wtab.setPhrases(phrases);
+		wtab.setOtherInfo(otherInfo);
+		dbWordTabService.modify(wtab);
+
+		Results results = new Results(
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.value(),
+				ReturnStatusConstant.API_RETURN_STATUS.NORMAL.desc());
+
+		return results;
+	}
+	/**
 	 * 关键字列表
 	 * @return
 	 */
