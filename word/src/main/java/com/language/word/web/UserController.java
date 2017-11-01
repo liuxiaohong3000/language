@@ -48,8 +48,8 @@ public class UserController {
 
     @ApiOperation(value="del word from userWords",notes="requires noting")
     @RequestMapping(value="deleteExpireWord", method= RequestMethod.POST)
-    public Results deleteExpireWord(Long userId){
+    public Results deleteExpireWord(Long userId,Long userWordId){
 
-        return busUserService.deleteExpireWord(userId);
+        return busUserService.deleteExpireWord(userId, userWordId);
     }
 }
