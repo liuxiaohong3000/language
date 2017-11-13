@@ -64,7 +64,7 @@
 						<if test="note != null"> and t.note = #{note} </if>
 						<if test="createTime != null"> and t.create_time = #{createTime} </if>
 						<if test="userId != null">
-							!EXISTS(select * from d_user_word tt where t.id=tt.word_id and tt.user_id=#{userId})
+							and !EXISTS(select * from d_user_word tt where t.id=tt.word_id and tt.user_id=#{userId})
 						</if>
 
 			</where>
