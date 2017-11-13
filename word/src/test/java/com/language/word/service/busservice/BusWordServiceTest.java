@@ -17,7 +17,7 @@ public class BusWordServiceTest {
     private BusWordService busWordService;
     @Test
     public void listWord() {
-        Results results=busWordService.listWord(9L,2);
+        Results results=busWordService.listWord(9L,9L,2);
         System.out.println(JSON.toJSONString(results));
     }
     @Test

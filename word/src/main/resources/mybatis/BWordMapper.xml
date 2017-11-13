@@ -55,15 +55,19 @@
   
   <!-- 分页查询 -->
 	<select id="searchByPage" parameterType="map" resultMap="BWordMap">
-		SELECT <include refid="columns" /> FROM b_word
+		SELECT <include refid="columns" /> FROM b_word t
 			<where>
-				    <if test="id != null"> and id = #{id} </if>
-						<if test="name != null"> and name = #{name} </if>
-						<if test="translate != null"> and translate = #{translate} </if>
-						<if test="typeId != null"> and type_id = #{typeId} </if>
-						<if test="note != null"> and note = #{note} </if>
-						<if test="createTime != null"> and create_time = #{createTime} </if>
-				</where>
+				    <if test="id != null"> and t.id = #{id} </if>
+						<if test="name != null"> and t.name = #{name} </if>
+						<if test="translate != null"> and t.translate = #{translate} </if>
+						<if test="typeId != null"> and t.type_id = #{typeId} </if>
+						<if test="note != null"> and t.note = #{note} </if>
+						<if test="createTime != null"> and t.create_time = #{createTime} </if>
+						<if test="userId != null">
+							!EXISTS(select * from d_user_word tt where t.id=tt.word_id and tt.user_id=#{userId})
+						</if>
+
+			</where>
 	</select>
   
   <!-- query b_word by primary key -->
